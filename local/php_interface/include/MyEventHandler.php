@@ -1,6 +1,7 @@
 <?
 AddEventHandler('iblock','OnBeforeIBlockElementUpdate',['MyEventHandler','cancelDeactivate']);
 AddEventHandler('main','OnBeforeEventAdd',['MyEventHandler','replaceFeedbackAuthor']);
+AddEventHandler('main','OnBuildGlobalMenu',['MyEventHandler','simpleContentEditorsAdminMenu']);
 
 class MyEventHandler
 {
@@ -44,5 +45,19 @@ class MyEventHandler
 			$arFields['AUTHOR']='Пользователь не авторизован, данные из формы: '.$arFields['AUTHOR'];
 		
 		CEventLog::Log('INFO', 'FEEDBACK_FORM', 'main', 'replace', 'Замена данных в отсылаемом письме - '.$arFields['AUTHOR']);
+	}
+	
+	function simpleContentEditorsAdminMenu(&$arGlobalMenu, &$arModuleMenu)
+	{	
+		if(CSite::InGroup([CONTENT_EDITORS_GID]))
+		{
+			$content_gid='global_menu_content';
+			foreach($arGlobalMenu as $key=>$val)
+				if($key!=$content_gid)
+					unset($arGlobalMenu[$key]);
+			foreach($arModuleMenu as $key=>$val)
+				if($val['parent_menu']!=$content_gid or $val['items_id']!='menu_iblock_/news')
+					unset($arModuleMenu[$key]);
+		}
 	}
 }
