@@ -1,3 +1,4 @@
 <?
-$MESS["SIMPLECOMP_EXAM2_NAME"] = "Мой простой компонент - материалы к экзамену";
+$MESS["SIMPLECOMP_EXAM2_NAME"] = "Простой компонент 70";
+$MESS["PATH_NAME"] = "Экзамен №2";
 ?>
