@@ -1,0 +1,11 @@
+/.idea
+/.git
+/upload/tmp
+/upload/resize_cache
+/bitrix/cache
+/bitrix/managed_cache
+/bitrix/*
+/*.log
+debug_*.txt
+*test.php
+*.komodoproject
