@@ -56,6 +56,7 @@ $this->setFrameMode(true);
 	"bitrix:news.list",
 	"",
 	Array(
+		"DISPLAY_SPECIALDATE" => $arParams["DISPLAY_SPECIALDATE"],
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 		"NEWS_COUNT" => $arParams["NEWS_COUNT"],

@@ -9,3 +9,4 @@
 debug_*.txt
 *test.php
 *.komodoproject
+local/timeline.txt
