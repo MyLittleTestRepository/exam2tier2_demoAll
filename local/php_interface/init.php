@@ -1,6 +1,7 @@
 <?
 //def
 define('PRODUCTS_IBLOCK_ID',2);
+define('METATAGS_IBLOCK_ID',6);
 define('CONTENT_EDITORS_GID',5);
 
 if(file_exists($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/MyEventHandler.php'))

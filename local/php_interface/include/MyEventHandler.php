@@ -2,6 +2,7 @@
 AddEventHandler('iblock','OnBeforeIBlockElementUpdate',['MyEventHandler','cancelDeactivate']);
 AddEventHandler('main','OnBeforeEventAdd',['MyEventHandler','replaceFeedbackAuthor']);
 AddEventHandler('main','OnBuildGlobalMenu',['MyEventHandler','simpleContentEditorsAdminMenu']);
+AddEventHandler('main','OnEpilog',['MyEventHandler','advancedMetaTags']);
 
 class MyEventHandler
 {
@@ -59,5 +60,30 @@ class MyEventHandler
 				if($val['parent_menu']!=$content_gid or $val['items_id']!='menu_iblock_/news')
 					unset($arModuleMenu[$key]);
 		}
+	}
+	
+	function advancedMetaTags()
+	{
+		if(!CModule::IncludeModule('iblock'))
+			return;
+		
+		global $APPLICATION;
+		
+		$Res=CIBlockElement::GetList('',['IBLOCK_ID'=>METATAGS_IBLOCK_ID,
+										 'NAME'=>$APPLICATION->GetCurDir(),
+										 'ACTIVE'=>'Y'
+										 ],false,false,['ID', 'IBLOCK_ID']);
+		
+		if(!$Res->SelectedRowsCount())
+			return;
+		
+		$meta=$Res->GetNextElement(false,false)->GetProperties(false,['EMPTY'=>N]);
+		
+		if(!count($meta))
+			return;
+		
+		foreach($meta as $property=>$val)
+			if(!empty($val['VALUE']))
+				$APPLICATION->SetPageProperty(strtolower($property),$val['VALUE']);
 	}
 }
