@@ -1,5 +1,6 @@
 <?
 AddEventHandler('iblock','OnBeforeIBlockElementUpdate',['MyEventHandler','cancelDeactivate']);
+AddEventHandler('main','OnBeforeEventAdd',['MyEventHandler','replaceFeedbackAuthor']);
 
 class MyEventHandler
 {
@@ -28,5 +29,20 @@ class MyEventHandler
 		global $APPLICATION;
 		$APPLICATION->ThrowException('Товар невозможно деактивировать, у него '.$showCounter.' просмотров'); 
 		return false;
+	}
+	
+	function replaceFeedbackAuthor(&$event, &$lid, &$arFields, &$message_id)
+	{
+		if($event!='FEEDBACK_FORM')
+			return;
+		
+		global $USER;
+		if($USER->IsAuthorized())
+			$arFields['AUTHOR']='Пользователь авторизован: '.$USER->GetID().' ('.$USER->GetLogin().') '
+			.$USER->GetFirstName().', данные из формы: '.$arFields['AUTHOR'];
+		else
+			$arFields['AUTHOR']='Пользователь не авторизован, данные из формы: '.$arFields['AUTHOR'];
+		
+		CEventLog::Log('INFO', 'FEEDBACK_FORM', 'main', 'replace', 'Замена данных в отсылаемом письме - '.$arFields['AUTHOR']);
 	}
 }
