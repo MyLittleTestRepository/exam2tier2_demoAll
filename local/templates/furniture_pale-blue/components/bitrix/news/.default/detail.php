@@ -3,6 +3,7 @@
 	"bitrix:news.detail",
 	"",
 	Array(
+		"CAN_IBLOCK_ID" => $arParams["CAN_IBLOCK_ID"],
 		"DISPLAY_DATE" => $arParams["DISPLAY_DATE"],
 		"DISPLAY_NAME" => $arParams["DISPLAY_NAME"],
 		"DISPLAY_PICTURE" => $arParams["DISPLAY_PICTURE"],
