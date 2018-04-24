@@ -22,6 +22,13 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
+		"Простой компонент 81", 
+		"/ex2/simplecomp_81/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
 		"Простой компонент 97", 
 		"/ex2/simplecomp_97/", 
 		Array(), 
