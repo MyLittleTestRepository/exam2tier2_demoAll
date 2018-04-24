@@ -86,6 +86,7 @@ if($this->StartResultCache())
 	
 	$arSelect=['ID',
 			   'NAME',
+			   'IBLOCK_ID',
 			   'IBLOCK_SECTION_ID',
 			   'PROPERTY_PRICE',
 			   'PROPERTY_MATERIAL',
@@ -104,9 +105,19 @@ if($this->StartResultCache())
 	{
 		$id=$product['ID'];
 		$arResult['SECTIONS'][$product['IBLOCK_SECTION_ID']]['ITEMS'][$id]=$id;
-		foreach($product as $key=>$val)
-			if(substr($key,-2,2)=='ID')
-				unset($product[$key]);
+		
+		//hermitage
+		$arButtons = CIBlock::GetPanelButtons(
+			$product["IBLOCK_ID"],
+			$product["ID"],
+			$product['IBLOCK_SECTION_ID'],
+			array("SECTION_BUTTONS"=>false, "SESSID"=>false)
+		);
+
+		$product["ADD_LINK"] = $arButtons["edit"]["add_element"]["ACTION_URL"];
+		$product["EDIT_LINK"] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+		$product["DELETE_LINK"] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
+
 		$arResult['PRODUCTS'][$id]=$product;
 	}
 	
