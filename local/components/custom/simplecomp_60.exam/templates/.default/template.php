@@ -22,3 +22,6 @@
 	</li>
 <?endforeach?>
 </ul>
+<?if(!empty($arResult['NAV_STRING'])):?>
+<?=$arResult['NAV_STRING']?>
+<?endif?>

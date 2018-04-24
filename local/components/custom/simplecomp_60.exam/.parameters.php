@@ -20,6 +20,12 @@ $arComponentParameters = array(
 			"TYPE" => "STRING",
 			"DEFAULT"=>"UF_NEWS_LINK"
 		),
+		"NAV_COUNT" => array(
+			"PARENT"=>"BASE",
+			"NAME" => GetMessage("NAV_COUNT"),
+			"TYPE" => "STRING",
+			"DEFAULT"=>"1"
+		),
 		"CACHE_TIME" => array(
 			"DEFAULT"=>"3600000"
 		),

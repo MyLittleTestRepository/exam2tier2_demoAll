@@ -10,7 +10,8 @@ $APPLICATION->SetTitle("Простой компонент 60");
 		"NEWS_IBLOCK_ID" => "1",
 		"PRODUCTS_LINK_CODE" => "UF_NEWS_LINK",
 		"CACHE_TYPE" => "A",
-		"CACHE_TIME" => "3600000"
+		"CACHE_TIME" => "3600000",
+		"NAV_COUNT" => "1"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

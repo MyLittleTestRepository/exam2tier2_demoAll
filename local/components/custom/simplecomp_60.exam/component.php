@@ -19,11 +19,21 @@ foreach($arParams as $key=>$val)
 	$arParams[$key]=$val;
 }
 
+//nav
+$arNavParams = null;
+$arNavigation = null;
+if(isset($arParams['NAV_COUNT']) && $arParams['NAV_COUNT']>0)
+{
+	$arNavParams = ["nPageSize" => $arParams["NAV_COUNT"]];
+	$arNavigation = CDBResult::GetNavParams($arNavParams);
+	
+}
+
 //check params
 if(!($arParams['PRODUCTS_IBLOCK_ID']>0 and $arParams['NEWS_IBLOCK_ID']>0 and strlen($arParams['PRODUCTS_LINK_CODE'])>3))
 	return;
 
-if($this->StartResultCache())
+if($this->StartResultCache(false, [$arNavParams, $arNavigation]))
 {
 	//get sections
 	$arFilter=['ACTIVE'=>'Y',
@@ -63,7 +73,9 @@ if($this->StartResultCache())
 			   'DATE_ACTIVE_FROM'
 			   ];
 	
-	$Res=CIBlockElement::GetList('', $arFilter, false, false, $arSelect);
+	$Res=CIBlockElement::GetList('', $arFilter, false, $arNavParams, $arSelect);
+	
+	$arResult["NAV_STRING"] = $Res->GetPageNavString('Страница');
 	
 	if(!$Res->SelectedRowsCount())
 	{
@@ -77,7 +89,23 @@ if($this->StartResultCache())
 		$arResult['NEWS'][$news['ID']]['DATE_ACTIVE_FROM']=$news['DATE_ACTIVE_FROM'];
 	}
 	
-			
+	//nav fix links
+	if(!empty($arNavParams))
+	{
+		$arSectionsID=[];
+		//удаляем пустые новости
+		foreach($arResult['NEWS'] as $newsID=>$news)
+			if(isset($news['NAME']))
+				foreach($news['LINK'] as $sectionID)
+					$arSectionsID[$sectionID]=$sectionID;
+			else
+				unset($arResult['NEWS'][$newsID]);
+		//удаляем лишние секции
+		foreach($arResult['SECTIONS'] as $sectionID=>$section)
+			if(!in_array($sectionID, $arSectionsID))
+				unset($arResult['SECTIONS'][$sectionID]);
+	}
+	
 	//get products
 	$arFilter=['ACTIVE'=>'Y',
 			   'IBLOCK_ID'=>$arParams['PRODUCTS_IBLOCK_ID'],
