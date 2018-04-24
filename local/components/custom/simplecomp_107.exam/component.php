@@ -25,6 +25,10 @@ if(!($arParams['PRODUCTS_IBLOCK_ID']>0 and $arParams['NEWS_IBLOCK_ID']>0 and str
 
 if($this->StartResultCache(false, isset($_GET['F']))) //отделим кэши
 {
+	global $CACHE_MANAGER;
+	if(defined("BX_COMP_MANAGED_CACHE"))
+		$CACHE_MANAGER->registerTag('iblock_id_'.SERVICES_IBLOCK_ID);
+	
 	//get sections
 	$arFilter=['ACTIVE'=>'Y',
 			   'IBLOCK_ID'=>$arParams['PRODUCTS_IBLOCK_ID'],
