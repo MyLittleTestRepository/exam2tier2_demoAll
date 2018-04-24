@@ -14,7 +14,13 @@
 			<?foreach($news['LINK'] as $sectionID):?>
 				<?foreach($arResult['SECTIONS'][$sectionID]['ITEMS'] as $productID):?>
 					<li>
-						<?=implode(' - ',$arResult['PRODUCTS'][$productID])?>
+						<?=$arResult['PRODUCTS'][$productID]['NAME']?>
+						- <?=$arResult['PRODUCTS'][$productID]['PROPERTY_PRICE_VALUE']?>
+						- <?=$arResult['PRODUCTS'][$productID]['PROPERTY_MATERIAL_VALUE']?>
+						- <?=$arResult['PRODUCTS'][$productID]['PROPERTY_ARTNUMBER_VALUE']?>
+						(<a href="<?=$arResult['PRODUCTS'][$productID]['DETAIL_PAGE_URL']?>">
+							<?=$arResult['PRODUCTS'][$productID]['DETAIL_PAGE_URL']?>
+						 </a>)
 					</li>
 				<?endforeach?>
 			<?endforeach?>

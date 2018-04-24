@@ -86,27 +86,33 @@ if($this->StartResultCache())
 	
 	$arSelect=['ID',
 			   'NAME',
+			   'IBLOCK_ID',
 			   'IBLOCK_SECTION_ID',
 			   'PROPERTY_PRICE',
 			   'PROPERTY_MATERIAL',
 			   'PROPERTY_ARTNUMBER',
+			   'DETAIL_PAGE_URL'
 			   ];
 	
-	$Res=CIBlockElement::GetList('', $arFilter, false, false, $arSelect);
+	$arSort=['NAME'=>'ASC',
+			 'SORT'=>'ASC'];
 	
+	$Res=CIBlockElement::GetList($arSort, $arFilter, false, false, $arSelect);
+	
+	//if(!empty($arParams['URL_TEMPLATE']))
+		$Res->SetUrlTemplates($arParams['URL_TEMPLATE']);
+
 	if(!$Res->SelectedRowsCount())
 	{
 		$this->AbortResultCache();
 		return;
 	}
 	
-	while($product=$Res->Fetch())
+	while($product=$Res->GetNext(true, false))
 	{
 		$id=$product['ID'];
 		$arResult['SECTIONS'][$product['IBLOCK_SECTION_ID']]['ITEMS'][$id]=$id;
-		foreach($product as $key=>$val)
-			if(substr($key,-2,2)=='ID')
-				unset($product[$key]);
+
 		$arResult['PRODUCTS'][$id]=$product;
 	}
 	

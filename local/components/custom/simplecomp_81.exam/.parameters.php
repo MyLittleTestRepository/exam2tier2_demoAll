@@ -20,6 +20,12 @@ $arComponentParameters = array(
 			"TYPE" => "STRING",
 			"DEFAULT"=>"UF_NEWS_LINK"
 		),
+		"URL_TEMPLATE" => array(
+			"PARENT"=>"BASE",
+			"NAME" => GetMessage("URL_TEMPLATE"),
+			"TYPE" => "STRING",
+			"DEFAULT"=>"catalog_exam/#SECTION_ID#/#ELEMENT_CODE#"
+		),
 		"CACHE_TIME" => array(
 			"DEFAULT"=>"3600000"
 		),
