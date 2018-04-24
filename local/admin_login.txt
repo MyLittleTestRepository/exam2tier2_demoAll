@@ -1,2 +1,3 @@
 admin:password
 manager:925526
+test*:password

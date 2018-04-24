@@ -1,4 +1,4 @@
 <?
-$MESS["SIMPLECOMP_EXAM2_NAME"] = "Простой компонент null";
+$MESS["SIMPLECOMP_EXAM2_NAME"] = "Простой компонент 97";
 $MESS["PATH_NAME"] = "Экзамен №2";
 ?>
