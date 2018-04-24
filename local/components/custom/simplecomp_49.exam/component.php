@@ -23,7 +23,7 @@ foreach($arParams as $key=>$val)
 if(!($arParams['PRODUCTS_IBLOCK_ID']>0 and $arParams['NEWS_IBLOCK_ID']>0 and strlen($arParams['PRODUCTS_LINK_CODE'])>3))
 	return;
 
-if($this->StartResultCache())
+if($this->StartResultCache(false, isset($_GET['F']))) //отделим кэши
 {
 	//get sections
 	$arFilter=['ACTIVE'=>'Y',
@@ -92,6 +92,22 @@ if($this->StartResultCache())
 			   'PROPERTY_ARTNUMBER',
 			   ];
 	
+	if(isset($_GET['F']))
+	{
+		$arFilter1=['LOGIC'=>'AND',
+					 ['<PROPERTY_PRICE' => 1500],
+					 ['PROPERTY_MATERIAL' => 'Металл, пластик']
+					];
+		$arFilter2=['LOGIC'=>'AND',
+					 ['<=PROPERTY_PRICE' => 1700],
+					 ['PROPERTY_MATERIAL' => 'Дерево, ткань']
+					];
+		$arFilter[]=['LOGIC'=>'OR',
+					 $arFilter1,
+					 $arFilter2
+					];
+	}
+	
 	$Res=CIBlockElement::GetList('', $arFilter, false, false, $arSelect);
 	
 	if(!$Res->SelectedRowsCount())
@@ -115,6 +131,9 @@ if($this->StartResultCache())
 			$arResult['COUNT']=count($arResult['PRODUCTS']);
 			$this->setResultCacheKeys(['COUNT']);
 		}
+	
+	if(isset($_GET['F']))
+		$this->AbortResultCache(); //сбросим кэш
 	
 	$this->includeComponentTemplate();
 }
