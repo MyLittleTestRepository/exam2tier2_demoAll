@@ -108,12 +108,21 @@ if($this->StartResultCache())
 			if(substr($key,-2,2)=='ID')
 				unset($product[$key]);
 		$arResult['PRODUCTS'][$id]=$product;
+
+		//price
+		if(!isset($arResult['MAX']))
+			$arResult['MAX']=$product['PROPERTY_PRICE_VALUE'];
+		if(!isset($arResult['MIN']))
+			$arResult['MIN']=$product['PROPERTY_PRICE_VALUE'];
+		$arResult['MAX']=max($arResult['MAX'], $product['PROPERTY_PRICE_VALUE']);
+		$arResult['MIN']=min($arResult['MIN'], $product['PROPERTY_PRICE_VALUE']);
+		
 	}
 	
 	if(count($arResult['PRODUCTS'])>0)
 		{
 			$arResult['COUNT']=count($arResult['PRODUCTS']);
-			$this->setResultCacheKeys(['COUNT']);
+			$this->setResultCacheKeys(['COUNT','MAX','MIN']);
 		}
 	
 	$this->includeComponentTemplate();

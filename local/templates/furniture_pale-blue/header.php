@@ -70,9 +70,9 @@ $APPLICATION->IncludeFile(
 				<a href="<?=SITE_DIR?>search/" class="search-icon" title="<?=GetMessage('CFT_SEARCH')?>"></a>
 				<a href="<?=SITE_DIR?>contacts/" class="feedback-icon" title="<?=GetMessage('CFT_FEEDBACK')?>"></a>
 			</div>
-		
+
 		</div>
-		
+
 		<div id="banner">		
 			<table id="banner-layout" cellspacing="0">
 				<tr>
@@ -136,7 +136,7 @@ $APPLICATION->IncludeComponent("bitrix:search.form", "flat", Array(
 ?>
 					</div>
 				</div>
-
+<?$APPLICATION->ShowViewContent('price')?>
 				<div class="information-block">
 					<div class="top"></div>
 					<div class="information-block-inner">

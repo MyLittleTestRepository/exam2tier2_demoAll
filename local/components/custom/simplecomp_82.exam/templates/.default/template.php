@@ -22,3 +22,11 @@
 	</li>
 <?endforeach?>
 </ul>
+<?$this->SetViewTarget('price')?>
+	<div style="color:red; margin: 34px 15px 35px 15px">
+		<p><?=GetMessage('MAX')?></p>
+		<p><?=$arResult['MAX']?></p>
+		<p><?=GetMessage('MIN')?></p>
+		<p><?=$arResult['MIN']?></p>
+	</div>
+<?$this->EndViewTarget()?>
