@@ -119,5 +119,13 @@ if($this->StartResultCache())
 	$this->includeComponentTemplate();
 }
 
+if(!empty($arParams['PRODUCTS_IBLOCK_ID']) && $APPLICATION->GetShowIncludeAreas())
+	$this->AddIncludeAreaIcon([
+							   'URL'   => '/bitrix/admin/'.CIBlock::GetAdminElementListLink($arParams['PRODUCTS_IBLOCK_ID']),
+							   'TITLE' => GetMessage('BUTTON'),
+							   'IN_PARAMS_MENU' => true
+							   ]);
+
+
 if(!empty($arResult['COUNT']))
 	$APPLICATION->SetTitle(GetMessage("TITLE").$arResult['COUNT']);
