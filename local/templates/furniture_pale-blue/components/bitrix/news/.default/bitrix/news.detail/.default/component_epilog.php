@@ -45,24 +45,4 @@ if(isset($_GET['report'])) {
 	var reportID = <?=json_encode($reportID)?>;
 	var ajax = <?=json_encode($arParams['AJAX_REPORT'])?>;
 	var url = <?=json_encode($APPLICATION->GetCurPage())?>;
-	
-	BX.ready(function(){
-
-		function addID(id){
-			if(text.hidden && id){
-				text.innerHTML += id;
-				text.hidden=false;
-			}
-		}
-
-		function sendReport(){
-			if(text.hidden)
-				BX.ajax.get(url+'?report', addID);
-		}
-		
-		if(ajax=='Y')
-			BX.bind(button, 'click', sendReport);
-		else
-			addID(reportID);
-	});
 </script>
