@@ -56,7 +56,6 @@ if($this->StartResultCache(false,$myID))
 	
 	//get all my type authors
 	$arFilter=['ACTIVE'=>'Y',
-			   '!ID'=>$myID,
 			   $arParams['UF_CODE']=>$myType,
 			   ];
 	
@@ -95,21 +94,19 @@ if($this->StartResultCache(false,$myID))
 
 	while($news=$Res->GetNextElement(true,false))
 	{
-		$fields=$news->GetFields();
+		$fields=$news->GetFields();		
 		
 		//set fields
 		$arResult['NEWS'][$fields['ID']]=$fields;
 		
-		//set link
 		$arAuthors=$news->GetProperty($arParams['NEWS_LINK_CODE'])['VALUE'];
+
+		if(in_array($myID, $arAuthors))
+			continue;
+		
+		//set link
 		foreach($arAuthors as $userID)
 		{
-			if($userID==$myID)
-			{
-				unset($arResult['USER'][$userID]['NEWS'][$fields['ID']]);
-				continue;
-			}
-			
 			if(empty($arResult['USER'][$userID]['ID']))
 				continue;
 			
@@ -117,6 +114,8 @@ if($this->StartResultCache(false,$myID))
 		}
 	}
 	
+	unset($arResult['USER'][$myID]);
+
 	//news count
 	if(count($arResult['NEWS'])>0)
 		$arResult['COUNT']=count($arResult['NEWS']);
