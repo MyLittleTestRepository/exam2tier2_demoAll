@@ -1,0 +1,30 @@
+ex2-34	30	add head meta specialdate for news.list template
+ex2-108	20	add head meta canonacal for news.detail template
+ex2-50	34	add eventhandler for deactivation popular products
+ex2-51	20	add eventhandler for replace author name from feedback form
+ex2-95	17	add eventhandler for reduce admin menu for content editors user group
+121
+ex2-94	34	add event handler for custom metatags from seo-iblock
+ex2-70	79	add simple component, product linked list, link news-products
+ex2-71	100	add simple component, product linked list, link firm-products
+ex2-97	100	add simple component, news linked list, link authors-news
+ex2-81	25	add functional for simple component, add sorting and url template
+338
+ex2-49	21	add functional for simple component, add triggered filter and cache
+ex2-58	49	add functional for simple component, add hermitage
+ex2-100	14	add functional for simple component, add button in component context menu
+ex2-82	22	add functional for simple component, add min and max prices
+ex2-60	34	add functional for simple component, add navpage
+140
+ex2-107	16	add functional for simple component, add tagged cache, link other iblock
+ex2-88	17	get site statistic
+ex2-10	08	get site statistic
+ex2-11	08	get site statistic
+ex2-25	20	add functional for complex component, add routing
+069
+ex2-54	90	add agent, count new user regs
+ex2-102	40	add multilang site, site selector
+ex2-104	142	add ajax report for news.detail template
+272
+5/5
+0940/1104

@@ -9,5 +9,5 @@
 debug_*.txt
 *test.php
 *.komodoproject
-local/timeline.txt
+#local/timeline.txt
 local/components/custom/simplecomp_null.exam
