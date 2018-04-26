@@ -13,8 +13,10 @@ function CheckUserCount()
 	
 	$days=intval(($time-$timeOld)/(24*3600));
 
+	$USER=new CUser;
+	
 	//get new users
-	$newUsersCount=CUser::GetList(${"DATE_REGISTER"}, ${"DESC"},
+	$newUsersCount=$USER->GetList(${"DATE_REGISTER"}, ${"DESC"},
 								  ['DATE_REGISTER_1'=>ConvertTimeStamp($timeOld,'FULL')],
 								  ['FIELDS'=>['ID']])->SelectedRowsCount();
 
@@ -28,6 +30,8 @@ function CheckUserCount()
 							   '!EMAIL'=>false],
 							  ['FIELDS'=>['EMAIL']]);
 
+	unset($USER);
+	
 	if(!$resAdmins->SelectedRowsCount())
 		return;
 
