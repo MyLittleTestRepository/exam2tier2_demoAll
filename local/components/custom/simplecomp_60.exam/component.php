@@ -75,7 +75,7 @@ if($this->StartResultCache(false, [$arNavParams, $arNavigation]))
 	
 	$Res=CIBlockElement::GetList('', $arFilter, false, $arNavParams, $arSelect);
 	
-	$arResult["NAV_STRING"] = $Res->GetPageNavString('Страница');
+	$arResult["NAV_STRING"] = $Res->GetPageNavString(GetMessage('NAV'));
 	
 	if(!$Res->SelectedRowsCount())
 	{
