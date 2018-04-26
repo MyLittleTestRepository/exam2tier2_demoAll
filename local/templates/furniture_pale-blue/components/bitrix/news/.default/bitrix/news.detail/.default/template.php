@@ -9,6 +9,9 @@
 	<?if($arParams["DISPLAY_NAME"]!="N" && $arResult["NAME"]):?>
 		<h3><?=$arResult["NAME"]?></h3>
 	<?endif;?>
+	<p><a id='report_button' href="<?=$arResult['REPORT_URL']?>" style='color:red'>пожаловаться!</a>
+	<span id='report_text' style='color:green' hidden>Ваше
+мнение учтено, №</span></p>
 	<div class="news-detail">
 	<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arResult["FIELDS"]["PREVIEW_TEXT"]):?>
 		<p><?=$arResult["FIELDS"]["PREVIEW_TEXT"];unset($arResult["FIELDS"]["PREVIEW_TEXT"]);?></p>

@@ -11,3 +11,9 @@ if(is_numeric($arParams['CAN_IBLOCK_ID']) and $arParams['CAN_IBLOCK_ID']>0)
 		$this->__component->setResultCacheKeys(['CANONICAL']);
 	}
 }
+
+//ajax
+$arResult['REPORT_URL']=$APPLICATION->GetCurPage().'?report';
+
+if($arParams['AJAX_REPORT'] == 'Y')
+	$arResult['REPORT_URL'] = 'javascript:void(0)';

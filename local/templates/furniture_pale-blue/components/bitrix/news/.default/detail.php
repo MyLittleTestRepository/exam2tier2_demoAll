@@ -3,6 +3,7 @@
 	"bitrix:news.detail",
 	"",
 	Array(
+		"AJAX_REPORT" => $arParams["AJAX_REPORT"],
 		"CAN_IBLOCK_ID" => $arParams["CAN_IBLOCK_ID"],
 		"DISPLAY_DATE" => $arParams["DISPLAY_DATE"],
 		"DISPLAY_NAME" => $arParams["DISPLAY_NAME"],

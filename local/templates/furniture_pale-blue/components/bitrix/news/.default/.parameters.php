@@ -2,6 +2,12 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arTemplateParameters = array(
+		"AJAX_REPORT" => Array(
+		"PARENT" => "BASE",
+		"NAME" => GetMessage("AJAX_REPORT"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
 	"CAN_IBLOCK_ID" => Array(
 		"NAME" => GetMessage("CAN_IBLOCK_ID"),
 		"TYPE" => "STRING",
