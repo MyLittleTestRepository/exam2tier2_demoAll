@@ -23,7 +23,7 @@ foreach($arParams as $key=>$val)
 if(!($arParams['PRODUCTS_IBLOCK_ID']>0 and $arParams['NEWS_IBLOCK_ID']>0 and strlen($arParams['PRODUCTS_LINK_CODE'])>3))
 	return;
 
-if($this->StartResultCache(false, isset($_GET['F']))) //отделим кэши
+if($this->StartResultCache(isset($_GET['F'])? 0 : false)) //отделим кэши
 {
 	//get sections
 	$arFilter=['ACTIVE'=>'Y',
@@ -131,9 +131,6 @@ if($this->StartResultCache(false, isset($_GET['F']))) //отделим кэши
 			$arResult['COUNT']=count($arResult['PRODUCTS']);
 			$this->setResultCacheKeys(['COUNT']);
 		}
-	
-	if(isset($_GET['F']))
-		$this->AbortResultCache(); //сбросим кэш
 	
 	$this->includeComponentTemplate();
 }
