@@ -21,6 +21,7 @@ $arDefaultUrlTemplates404 = array(
 	"sections_top" => "",
 	"section" => "#SECTION_ID#/",
 	"detail" => "#SECTION_ID#/#ELEMENT_ID#/",
+	"exampage" => "exam/new/#PARAM1#/?PARAM2=#PARAM2#"
 );
 
 $arDefaultVariableAliases404 = array();
